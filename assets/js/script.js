@@ -50,7 +50,6 @@ var startgame = function () {
             timerRun=false;
             // scorePage();
         };
-    
     }, 1000);
     }
 } 
@@ -65,3 +64,37 @@ startButtonEl.addEventListener("click", startgame);
 
 
 // startButtonEl.addEventListener("click", startQuiz);
+// Event delegation refers to offsetting the click event to a parent that will always exist, 
+// then checking which child element triggered the event. 
+// A plain JavaScript solution would look something like this:
+
+document.querySelector("#wrapper").addEventListener("click", function(event) {
+ if (event.target.matches(".task")) {
+   console.log("dynamic task was clicked");
+ }
+});
+
+
+var firstNameInput = document.querySelector("#first-name");
+var lastNameInput = document.querySelector("#last-name");
+var emailInput = document.querySelector("#email");
+var passwordInput = document.querySelector("#password");
+var signUpButton = document.querySelector("#sign-up");
+
+signUpButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  
+  var user = {
+    firstName: firstNameInput.value.trim(),
+    lastName: lastNameInput.value.trim(),
+    email: emailInput.value.trim(),
+    password: passwordInput.value.trim()
+  };
+
+  // set new submission to local storage 
+  localStorage.setItem("key",JSON.stringify(user));
+  // retrives the string
+  let userString= localStorage.getItem("key");
+  // inside parse must be a string
+  let userObject = JSON.parse(userString);
+});
