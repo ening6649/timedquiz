@@ -1,27 +1,10 @@
 
 
 
-// var startQuiz = function() {
-//    questionAsk();
-//    choiceList();
-// }
 
-// var questionAsk = function() {
-//     var questionAskEl = document.createElement ("h1");
-//     questionAskEl.textContent = "blah blah blah";
-//     questionAskEl.className = "questions";
-//     questionAskEl.appendChild(quiz);
-// }
 
-// var choiceList = function () {
-//     var choiceListEl = document.createElement ("li");
-//         choiceListEl.textContent = "";
-//         questionlistEl.className = "choices"
-//         startButtonEl.appendChild(questionlistEl)
-// }
 
-// questionAsk.className = "questions";
-// choiceList.className = "choices"
+
 
 
 
@@ -35,44 +18,61 @@
 var body = document.body;
 var MainEl=document.createElement("main");
 var divEl = document.createElement("div");
-var H2El = document.createElement ("h2");
+var H1El = document.createElement ("h1");
 var pEl= document.createElement("p");
 var buttonEl = document.createElement ("button");
 divEl.className = "startpage";
-H2El.textContent = "Timed Quiz";
+H1El.textContent = "Timed Quiz";
 pEl.textContent = "Start your quiz here";
 buttonEl.textContent ="click to start";
 buttonEl.id ="start";
 body.appendChild(MainEl);
 MainEl.appendChild(divEl);
-divEl.appendChild(H2El);
+divEl.appendChild(H1El);
 divEl.appendChild(pEl);
 divEl.appendChild(buttonEl);
 
 // question page
 var questionH1El = document.createElement("h1");
 var questionUlEl = document.createElement("ul");
-var questionLiEl = document.createElement("li");
+var questionLi1El = document.createElement("li");
+var questionLi2El = document.createElement("li");
+var questionLi3El =document.createElement("li");
+var questionLi4El = document.createElement("li");
 var questionPEl = document.createElement("p");
 questionH1El.textContent = "What is the javascript command to create a html element?"
-questionLiEl.textContent = "document";
 questionPEl.textContent= "";
-
-
+questionUlEl.appendChild(questionLi1El);
+questionUlEl.appendChild(questionLi2El);
+questionUlEl.appendChild(questionLi3El);
+questionUlEl.appendChild(questionLi4El);
+questionLi1El.textContent="these are choices";
+questionLi2El.textContent="this is the second choice";
+questionLi3El.textContent="this is the third choice";
+questionLi4El.textContent="this is the fourth choice";
+questionUlEl.className=".choices"; 
+questionLi1El.id ="choice1"
 
 var nextPage = function() {
  console.log("next page fired");
-//  H2El.textContent ="";
-//  pEl.textContent = "";
-//  buttonEl.textContent = "";
-H2El.replaceWith(questionH1El);
+H1El.replaceWith(questionH1El);
 pEl.replaceWith(questionUlEl);
 buttonEl.replaceWith(questionPEl);
 
 }
+// choice selectors
+var choice1 = document.querySelector("#choice1")
+questionLi1El.addEventListener("click",goodchoice); 
+
+
+var goodchoice = function () {
+  console.log("choice fired ")
+}
 
 
 
+
+// timer 
 var startButtonEl= document.querySelector("#start");
 var counterEl= document.querySelector("#count");
 
