@@ -50,17 +50,25 @@ divEl.appendChild(pEl);
 divEl.appendChild(buttonEl);
 
 
+var nextPage = function() {
+ console.log("next page fired");
+ H2El.textContent ="";
+ pEl.textContent = "";
+ buttonEl.textContent = "";
+ 
+}
+
 
 
 var startButtonEl= document.querySelector("#start");
 var counterEl= document.querySelector("#count");
 
-var counter = 3;
+
 var timerRun = false;
 var startgame = function () {
     if (timerRun ===false) {
         timerRun = true;
-        counter = 5;
+        var counter = 5;
     var stopCount = setInterval(() => {
      counterEl.textContent= counter; 
      counter--;
@@ -74,8 +82,8 @@ var startgame = function () {
     }
 } 
 
-
 startButtonEl.addEventListener("click", startgame);
+startButtonEl.addEventListener("click", nextPage); 
 
 
 
