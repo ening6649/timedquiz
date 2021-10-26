@@ -49,13 +49,26 @@ divEl.appendChild(H2El);
 divEl.appendChild(pEl);
 divEl.appendChild(buttonEl);
 
+// question page
+var questionH1El = document.createElement("h1");
+var questionUlEl = document.createElement("ul");
+var questionLiEl = document.createElement("li");
+var questionPEl = document.createElement("p");
+questionH1El.textContent = "What is the javascript command to create a html element?"
+questionLiEl.textContent = "document";
+questionPEl.textContent= "";
+
+
 
 var nextPage = function() {
  console.log("next page fired");
- H2El.textContent ="";
- pEl.textContent = "";
- buttonEl.textContent = "";
- 
+//  H2El.textContent ="";
+//  pEl.textContent = "";
+//  buttonEl.textContent = "";
+H2El.replaceWith(questionH1El);
+pEl.replaceWith(questionUlEl);
+buttonEl.replaceWith(questionPEl);
+
 }
 
 
