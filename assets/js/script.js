@@ -54,21 +54,26 @@ var questionLi4El = document.createElement("button");
 var questionPEl = document.createElement("p");
 questionH1El.textContent = "What is the javascript command to create a html element?"
 questionPEl.textContent= "";
+questionPEl.className='feedback';
 questionUlEl.appendChild(questionLi1El);
 questionUlEl.appendChild(questionLi2El);
 questionUlEl.appendChild(questionLi3El);
 questionUlEl.appendChild(questionLi4El);
+questionH1El.className = 'questions'
 questionLi1El.textContent="this is the first choice";
 questionLi2El.textContent="this is the second choice";
 questionLi3El.textContent="this is the third choice";
 questionLi4El.textContent="this is the fourth choice";
-questionUlEl.className=".choices"; 
+questionLi1El.className ="choices";
+questionLi2El.className ="choices";
+questionLi3El.className ="choices";
+questionLi4El.className ="choices";
 questionLi1El.id ="choice1";
 questionLi2El.id ="choice2";
 questionLi3El.id ="choice3";
 questionLi4El.id ="choice4";
-questionUlEl.setAttribute('style', 'display:flex; flex-direction:column;')
-question
+questionUlEl.setAttribute('style', 'display:flex; flex-direction:column;justify-content:space-between;')
+
 
 
 var nextPage = function() {
@@ -84,10 +89,14 @@ var nextPage = function() {
 
 // question page two
 var pagetwo = function (event) {
+  
+
   var targetEl = event.target; 
   console.log(event.target);
   if (targetEl.matches('#choice1')||targetEl.matches('#choice2')||targetEl.matches('#choice3')) {
     questionPEl.textContent ='wrong';
+    
+    
   } else {
     questionPEl.textContent='correct';
   }
@@ -111,6 +120,8 @@ var question2Li4El = document.createElement("button");
 var question2PEl = document.createElement("p");
 question2H1El.textContent = "which of the following is not a commonly use data type?"
 question2PEl.textContent= "";
+question2PEl.className='feedback';
+question2H1El.className ='questions';
 question2UlEl.appendChild(question2Li1El);
 question2UlEl.appendChild(question2Li2El);
 question2UlEl.appendChild(question2Li3El);
@@ -119,7 +130,12 @@ question2Li1El.textContent="this is the2 first choice";
 question2Li2El.textContent="this is the2 second choice";
 question2Li3El.textContent="this is the2 third choice";
 question2Li4El.textContent="this is the2 fourth choice";
-question2UlEl.className=".choices"; 
+question2UlEl.className=".choiceparent"; 
+question2UlEl.setAttribute('style', 'display:flex; flex-direction:column;justify-content:space-between;')
+question2Li1El.className = "choices";
+question2Li2El.className = "choices";
+question2Li3El.className = "choices";
+question2Li4El.className = "choices";
 question2Li1El.id ="choice1";
 question2Li2El.id ="choice2";
 question2Li3El.id ="choice3";
@@ -135,9 +151,11 @@ var pagethree= function() {
 }
 
 var turnpage = function(event) {
+ 
   target2El= event.target;
   if (target2El.matches('#choice1')||target2El.matches('#choice2')||target2El.matches('#choice3')) {
     question2PEl.textContent ='wrong';
+    
   } else {
     question2PEl.textContent='correct';
   }
@@ -158,7 +176,7 @@ var inputscore =function (){
   question2H1El.replaceWith(question3H1El);
   question3H1El.textContent = 'All done!';
   question2UlEl.replaceWith(yourScoreEl);
-  yourScoreEl.innerHTML = "<h3> Your Score is  "+count.textContent +"</h3>" ;
+  yourScoreEl.innerHTML = "<h3> Your Score is  "+count.textContent +" !</h3>" ;
   yourScoreEl.appendChild(yourInitialEl);
   yourScoreEl.appendChild(submitScore);
   submitScore.id ='submitscore'
@@ -172,11 +190,11 @@ var inputscore =function (){
 // timer 
 var startButtonEl= document.querySelector("#start");
 var counterEl= document.querySelector("#count");
-var timerRun = false;
+// var timerRun = false;
 var startgame = function () {
-    if (timerRun ===false) {
-        timerRun = true;
-        var counter = 5;
+    // if (timerRun ===false) {
+    //     timerRun = true;
+        counter = 60;
         // take out var to make the variable global 
     stopCount = setInterval(() => {
      counterEl.textContent= counter; 
@@ -184,11 +202,11 @@ var startgame = function () {
         console.log(counter)
         if (counter < 0) {
             clearInterval(stopCount);
-            timerRun=false;
+            // timerRun=false;
             // scorePage();
         };
     }, 1000);
-    }
+    // }
 } 
 
 var saveScore = function() {
