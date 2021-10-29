@@ -1,6 +1,7 @@
 :root {
     --grey:#333;
-    --primary:darkorchid;
+    --primary:rgb(69, 1, 104);
+    --secondary:darkorchid;
     --text: white;
 }
 
@@ -37,8 +38,47 @@ header {
 #start:hover {
     box-shadow: 0 2px var(--grey);
     top: -2px;
+    background-color:var(--secondary) ;
   }
 
+#highscore {
+    outline: none;
+    border: none;
+    display: inline-block;
+    padding: 5px 8px;
+    color: var(--secondary);
+    font-size: 20px;
+    border-radius: 12px;
+    position: relative;
+    top: -3px;
+    background-color: var(--text);
+    
+}
+
+#counter {
+    font-size: 20px;
+}
+
+#homepagep {
+    font-weight: lighter;
+    width:50%;
+    line-height: 2;
+    margin-left: 50px;
+    margin-top: 0px;
+    font-size: 20px;
+}
+
+.texttop {
+    font-size: 45px;
+    margin: 0px;
+}
+
+ /* color: var(--grey);
+  padding: 15px 15px;
+  border: 2px solid var(--grey);
+  background: var(--tertiary);
+  border-radius: 12px;
+  margin-bottom: 20px; */
 
 main section h2 {
     font-size: 50px;
