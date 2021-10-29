@@ -67,6 +67,9 @@ questionLi1El.id ="choice1";
 questionLi2El.id ="choice2";
 questionLi3El.id ="choice3";
 questionLi4El.id ="choice4";
+questionUlEl.setAttribute('style', 'display:flex; flex-direction:column;')
+question
+
 
 var nextPage = function() {
   console.log("next page fired");
@@ -148,11 +151,22 @@ var turnpage = function(event) {
 
 // save score and initial 
 var question3H1El = document.createElement("h1");
-var questionScoreEl = document.createElement
+var yourScoreEl = document.createElement('div');
+var yourInitialEl = document.createElement('input')
+var submitScore = document.createElement('button')
 var inputscore =function (){
   question2H1El.replaceWith(question3H1El);
-  question3H1El.textContent = 'All done!'
-
+  question3H1El.textContent = 'All done!';
+  question2UlEl.replaceWith(yourScoreEl);
+  yourScoreEl.innerHTML = "<h3> Your Score is  "+count.textContent +"</h3>" ;
+  yourScoreEl.appendChild(yourInitialEl);
+  yourScoreEl.appendChild(submitScore);
+  submitScore.id ='submitscore'
+  submitScore.textContent = "submit"
+  yourInitialEl.placeholder = 'enter your initial';
+  yourInitialEl.id = 'savedinitial'
+  clearInterval(stopCount);
+  submitScore.addEventListener('click', saveScore)
 }
 
 // timer 
@@ -163,7 +177,8 @@ var startgame = function () {
     if (timerRun ===false) {
         timerRun = true;
         var counter = 5;
-    var stopCount = setInterval(() => {
+        // take out var to make the variable global 
+    stopCount = setInterval(() => {
      counterEl.textContent= counter; 
      counter--;
         console.log(counter)
@@ -176,27 +191,34 @@ var startgame = function () {
     }
 } 
 
-var saveTasks = function() {
+var saveScore = function() {
+  
+  ScoreOject = {
+    initial: yourInitialEl.value,
+    time: count.textContent,
+  }
   // localStorage can only store strings . stringfy convers other type of date into strings
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("ScoreOject", JSON.stringify(ScoreOject));
+  
+  var createHighscore = function() {
+    
+    var scoreH1El = document.createElement('h1');
+    var scoreUlEl = document.createElement('ul');
+    var scoreLiEl = document.createElement('li');
+    question3H1El.replaceWith(scoreH1El);
+    scoreH1El.textContent = 'High Score';
+    yourScoreEl.replaceWith(scoreUlEl)
+    scoreLiEl.appendChild(scoreUlEl);
+    scoreLiEl.className ='score-item';
+    scoreLiEl.innerHTML = ScoreOject.initial + ScoreOject.time;
+    
+  }
+  createHighscore();
 }
 
-var loadTasks = function() {
-  var savedTasks = localStorage.getItem("tasks");
-
-  if (!savedTasks) {
-    return false;
-  }
-
-  savedTasks = JSON.parse(savedTasks);
-  // loop through savedTasks array
-  for (var i = 0; i < savedTasks.length; i++) {
-  // pass each task object into the `createTaskEl()` function
-      createTaskEl(savedTasks[i]);
-  }
+var loadscore = function (){
+localStorage.getItem("ScoreOject",JSON.parse(ScoreOject));
 }
-
-
 
 
 
