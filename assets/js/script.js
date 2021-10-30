@@ -1,25 +1,29 @@
+var counter = 60;
+
+
 // score page
 var scorePageEl = document.querySelector('#highscore');
 
 var scorepage = function () {
   console.log("score page fired");
-  var scorePageH1El = document.createElement('h1');
-  scorePageH1El.textContent = 'High Score';
-  H1El.replaceWith(scorePageH1El);
-  var scorePageUlEl = document.createElement ("ul");
-  var scorePageLiEl = document.createElement('li')
-  pEl.replaceWith(scorePageUlEl);
-  scorePageUlEl.appendChild(scorePageLiEl);
-  scorePageLiEl.textContent ="This is a score";
-  scorePageButtonDivEl= document.createElement('div');
-  scorePageButton1El= document.createElement ('button');
-  scorePageButton2El= document.createElement('button');
-  buttonEl.replaceWith(scorePageButtonDivEl);
-  scorePageButtonDivEl.appendChild(scorePageButton1El);
-  scorePageButtonDivEl.appendChild(scorePageButton2El);
+  // var scorePageH1El = document.createElement('h1');
+  // scorePageH1El.textContent = 'High Score';
+  // H1El.replaceWith(scorePageH1El);
+  // var scorePageUlEl = document.createElement ("ul");
+  // var scorePageLiEl = document.createElement('li')
+  // pEl.replaceWith(scorePageUlEl);
+  // scorePageUlEl.appendChild(scorePageLiEl);
+  // scorePageLiEl.innerHTML= "Go back"
+  // scorePageButtonDivEl= document.createElement('div');
+  // scorePageButton1El= document.createElement ('button');
+  // scorePageButton2El= document.createElement('button');
+  // buttonEl.replaceWith(scorePageButtonDivEl);
+  // scorePageButtonDivEl.appendChild(scorePageButton1El);
+  // scorePageButtonDivEl.appendChild(scorePageButton2El);
   
   
 }
+
 
 
 
@@ -60,10 +64,10 @@ questionUlEl.appendChild(questionLi2El);
 questionUlEl.appendChild(questionLi3El);
 questionUlEl.appendChild(questionLi4El);
 questionH1El.className = 'questions'
-questionLi1El.textContent="this is the first choice";
-questionLi2El.textContent="this is the second choice";
-questionLi3El.textContent="this is the third choice";
-questionLi4El.textContent="this is the fourth choice";
+questionLi1El.textContent="Sushi";
+questionLi2El.textContent="document.createThings();";
+questionLi3El.textContent="iphone";
+questionLi4El.textContent="document.createElement();";
 questionLi1El.className ="choices";
 questionLi2El.className ="choices";
 questionLi3El.className ="choices";
@@ -96,7 +100,7 @@ var pagetwo = function (event) {
   if (targetEl.matches('#choice1')||targetEl.matches('#choice2')||targetEl.matches('#choice3')) {
     questionPEl.textContent ='wrong';
     
-    
+    counter= counter-10;
   } else {
     questionPEl.textContent='correct';
   }
@@ -126,10 +130,10 @@ question2UlEl.appendChild(question2Li1El);
 question2UlEl.appendChild(question2Li2El);
 question2UlEl.appendChild(question2Li3El);
 question2UlEl.appendChild(question2Li4El);
-question2Li1El.textContent="this is the2 first choice";
-question2Li2El.textContent="this is the2 second choice";
-question2Li3El.textContent="this is the2 third choice";
-question2Li4El.textContent="this is the2 fourth choice";
+question2Li1El.textContent="strings";
+question2Li2El.textContent="numbers";
+question2Li3El.textContent="booleans";
+question2Li4El.textContent="headphones";
 question2UlEl.className=".choiceparent"; 
 question2UlEl.setAttribute('style', 'display:flex; flex-direction:column;justify-content:space-between;')
 question2Li1El.className = "choices";
@@ -155,7 +159,7 @@ var turnpage = function(event) {
   target2El= event.target;
   if (target2El.matches('#choice1')||target2El.matches('#choice2')||target2El.matches('#choice3')) {
     question2PEl.textContent ='wrong';
-    
+     counter= counter-10;
   } else {
     question2PEl.textContent='correct';
   }
@@ -177,11 +181,12 @@ var inputscore =function (){
   question3H1El.textContent = 'All done!';
   question2UlEl.replaceWith(yourScoreEl);
   yourScoreEl.innerHTML = "<h3> Your Score is  "+count.textContent +" !</h3>" ;
-  yourScoreEl.appendChild(yourInitialEl);
+   yourScoreEl.appendChild(yourInitialEl);
   yourScoreEl.appendChild(submitScore);
   submitScore.id ='submitscore'
   submitScore.textContent = "submit"
-  yourInitialEl.placeholder = 'enter your initial';
+  yourInitialEl.placeholder = 'enter your initials';
+ 
   yourInitialEl.id = 'savedinitial'
   clearInterval(stopCount);
   submitScore.addEventListener('click', saveScore)
@@ -209,6 +214,9 @@ var startgame = function () {
     // }
 } 
 
+
+
+
 var saveScore = function() {
   
   ScoreOject = {
@@ -225,17 +233,24 @@ var saveScore = function() {
     var scoreLiEl = document.createElement('li');
     question3H1El.replaceWith(scoreH1El);
     scoreH1El.textContent = 'High Score';
-    yourScoreEl.replaceWith(scoreUlEl)
-    scoreLiEl.appendChild(scoreUlEl);
+    yourScoreEl.replaceWith(scoreUlEl);
+    scoreLiEl.innerHTML= ScoreOject.initial.slice(0,2) + ' has a score of ' + ScoreOject.time;
+    scoreLiEl.id = "loadit"
+    scoreUlEl.appendChild(scoreLiEl);
     scoreLiEl.className ='score-item';
-    scoreLiEl.innerHTML = ScoreOject.initial + ScoreOject.time;
+    console.log(typeof ScoreOject.initial)
+   
     
   }
   createHighscore();
+  loadscore();
 }
 
+
+
 var loadscore = function (){
-localStorage.getItem("ScoreOject",JSON.parse(ScoreOject));
+localStorage.getItem("ScoreOject");
+console.log(ScoreOject);
 }
 
 
@@ -256,43 +271,4 @@ scorePageEl.addEventListener('click',scorepage);
 
 
 
-// startButtonEl.addEventListener("click", startQuiz);
-// Event delegation refers to offsetting the click event to a parent that will always exist, 
-// then checking which child element triggered the event. 
-// A plain JavaScript solution would look something like this:
 
-// document.querySelector("#wrapper").addEventListener("click", function(event) {
-//  if (event.target.matches(".task")) {
-//    console.log("dynamic task was clicked");
-//  }
-// });
-
-
-
-//   // set new submission to local storage 
-//   localStorage.setItem("key",JSON.stringify(user));
-//   // retrives the string
-//   let userString= localStorage.getItem("key");
-//   // inside parse must be a string
-//   let userObject = JSON.parse(userString);
-// });
-
-
-// infoEl.appendChild(nameEl);
-// body.appendChild(favoriteEl);
-// // favoriteEl.appendChild(listEl);
-// // Append ordered list 
-// favoriteEl.appendChild(listEl);
-// listEl.appendChild(li1);
-
-
-// h1El.setAttribute("style", "margin:auto; width:50%; text-align:center;");
-// infoEl.setAttribute("style", "margin:auto; width:50%; text-align:center;");
-// imgEl.setAttribute("src", "http://placekitten.com/200/300");
-// nameEl.setAttribute("style", "font-size:25px; text-align:center;");
-// kittenEl.setAttribute("style", "font-size:25px; text-align:center;");
-// favoriteEl.setAttribute("style", "font-size:20px;");
-
-// // TODO: Add ordered list items containing four favorite foods
-// listEl.setAttribute("style","background-color:#333;padding:20px;");
-// li1.setAttribute("style","color:white;padding:5px;margin-left:35;background-color:#f00;")

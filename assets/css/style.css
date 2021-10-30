@@ -142,7 +142,11 @@ header {
     background-color:var(--secondary) 
 }
 
-
+#loadit {
+    list-style: none;
+    font-size: 25px;
+    /* background-color: var(--primary); */
+}
 
  /* color: var(--grey);
   padding: 15px 15px;
